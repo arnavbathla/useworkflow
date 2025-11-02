@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vercel Workflow Directive Demo for AI Agents
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is a [Next.js](https://nextjs.org) application, bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app), specifically designed to demonstrate and test Vercel's `useworkflow` directive. Its primary purpose is to showcase how this powerful directive can be leveraged to build and ship robust, long-running, and fault-tolerant background AI Agents, which is particularly relevant for orchestrating complex processes like those involved in shipping AI Agents.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   **Vercel `useworkflow` Directive:** Core demonstration of its capabilities for orchestrating background tasks and long-running operations.
+*   **AI Agent Orchestration:** Highlights how `useworkflow` can be used as a foundation for building and managing complex AI agent workflows.
+*   **Fault-Tolerant Steps:** Individual workflow steps are designed to be retried automatically on unhandled errors, ensuring robustness.
+*   **Explicit Error Handling:** Demonstrates the use of `FatalError` to prevent retries for unrecoverable issues (e.g., an invalid email format).
+*   **Next.js Integration:** Seamlessly integrates with Next.js API routes and the App Router for triggering workflows from the frontend.
+*   **Asynchronous Execution:** Workflows execute asynchronously, ensuring the main application thread remains responsive and non-blocking.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*   `app/page.tsx`: The main frontend page containing a simple email signup form.
+*   `app/api/signup/route.ts`: The Next.js API route responsible for receiving signup requests and initiating the `handleUserSignup` workflow.
+*   `workflows/user-signup.ts`: Defines the `handleUserSignup` workflow, which is composed of several `use step` functions (`createUser`, `sendWelcomeEmail`, `sendOnboardingEmail`). This file contains the core business logic and workflow orchestration.
+*   `next.config.ts`: Configures Next.js to enable the `workflow` integration using `withWorkflow`.
