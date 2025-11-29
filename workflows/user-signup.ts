@@ -20,7 +20,7 @@ async function sendWelcomeEmail(user: { id: string; email: string; }) {
   // By default, steps will be retried for unhandled errors
    throw new Error("Retryable!");
   }
-}
+} 
 
 async function sendOnboardingEmail(user: { id: string; email: string}) {
   "use step"; 
